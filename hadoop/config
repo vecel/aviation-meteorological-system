@@ -1,0 +1,3 @@
+CORE-SITE.XML_fs.defaultFS=hdfs://namenode:8020
+HDFS-SITE.XML_dfs.namenode.name.dir=file:///hadoop/dfs/name
+HDFS-SITE.XML_dfs.datanode.data.dir=file:///hadoop/dfs/data
