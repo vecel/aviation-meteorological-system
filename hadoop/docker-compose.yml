@@ -1,0 +1,52 @@
+x-hadoop: &hadoop_common
+  image: hadoop
+  build: .
+  env_file: ./config
+
+services:
+  namenode:
+    <<: *hadoop_common
+    container_name: namenode
+    hostname: namenode
+    command: ["hdfs", "namenode"]
+    ports:
+      - "9870:9870"
+    environment: 
+      ENSURE_NAMENODE_DIR: /hadoop/dfs/name
+    volumes:
+      - namenode_data:/hadoop/dfs
+
+  datanode_1:
+    <<: *hadoop_common
+    container_name: datanode_1
+    hostname: datanode_1
+    command: ["hdfs", "datanode"]
+    depends_on: [namenode]
+    volumes:
+      - datanode1_data:/hadoop/dfs
+
+  datanode_2:
+    <<: *hadoop_common
+    container_name: datanode_2
+    hostname: datanode_2
+    command: ["hdfs", "datanode"]
+    depends_on: [namenode]
+    volumes:
+      - datanode2_data:/hadoop/dfs
+
+  resourcemanager:
+    <<: *hadoop_common
+    container_name: resourcemanager
+    hostname: resourcemanager
+    command: ["yarn", "resourcemanager"]
+
+  nodemanager:
+    <<: *hadoop_common
+    command: ["yarn", "nodemanager"]
+    depends_on:
+      - resourcemanager
+
+volumes:
+  namenode_data: 
+  datanode1_data:
+  datanode2_data:
