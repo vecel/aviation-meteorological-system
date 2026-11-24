@@ -8,9 +8,20 @@ services:
     environment:
       - SINGLE_USER_CREDENTIALS_USERNAME=admin
       - SINGLE_USER_CREDENTIALS_PASSWORD=AdminAdminAdmin
+      - OPENSKY_API_CLIENT_ID=vecel-api-client
+    secrets:
+      - source: opensky_client_id
+        target: /run/secrets/opensky/client_id
+      - source: opensky_client_secret
+        target: /run/secrets/opensky/client_secret
     volumes: 
       - nifi_data:/opt/nifi
 
+secrets:
+  opensky_client_secret: 
+    file: ../secrets/opensky_client_secret.txt
+  opensky_client_id:
+    file: ../secrets/opensky_client_id.txt
 
 volumes:
   nifi_data:
