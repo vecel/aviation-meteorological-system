@@ -48,5 +48,8 @@ services:
 
 volumes:
   namenode_data: 
+    name: bigdata_namenode
   datanode1_data:
+    name: bigdata_datanode_1
   datanode2_data:
+    name: bigdata_datanode_2
