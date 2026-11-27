@@ -1,3 +1,7 @@
 include:
   - hadoop/compose.yaml
   - nifi/compose.yaml
+
+networks:
+  default:
+    name: bigdata
