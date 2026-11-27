@@ -1,0 +1,3 @@
+include:
+  - hadoop/compose.yaml
+  - nifi/compose.yaml
